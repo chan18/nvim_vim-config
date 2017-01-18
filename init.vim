@@ -65,7 +65,6 @@ Plug 'rafaelndev/deoplete-laravel-plugin', {'for': ['php'], 'do': 'composer inst
 
 " css
 
-
 " autocomplete
 Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
@@ -84,30 +83,24 @@ Plug 'SirVer/ultisnips'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set termguicolors
 syntax on
-set ruler		" shows line number at bottom 
-"set spell
+set ruler " shows line number at bottom
+set spell
 set number
-colorscheme fairyfloss
-"colorscheme nova
+"colorscheme fairyfloss
+colorscheme nova
 set bg=dark
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "set cursorline		" horizontal highlight
 " copy-past from clip board
 	if has('clipboard')
 		set clipboard=unnamed
 	endif
-
-
 filetype plugin indent on
-
 set encoding=utf-8	" use unicode/utf-8
-
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
-
 scriptencoding utf-8
-
  "set autowrite                       " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
@@ -116,7 +109,6 @@ set history=1000                    " Store a ton of history (default is 20)
 set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
 set showcmd                         " show the command
-
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
@@ -158,42 +150,63 @@ set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-
  " leader mapping
 let mapleader = ','
 
-" save
-nmap <C-S> :update<CR>
-nmap <F5> :so %<CR>
-nmap <leader>tt :terminal<CR>
+nmap <C-S> :update<CR> " save
+nmap <F5> :so %<CR> " source this init
+nmap <leader>tt :vsp:terminal<CR> " terminal mapping
 
 " easy windows mode
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+"map <C-L> <C-W>l<C-W>_
+"map <C-H> <C-W>h<C-W>_
+
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+map <C-H> <C-W>h
 
 " Neard tree
-map <C-e> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
  " Wrapped lines goes down/up to next row, rather than next line in file.
-    noremap j gj
-    noremap k gk
+noremap j gj
+noremap k gk
 
 map <S-H> gT
 map <S-L> gt
 
+" window splitings
 map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 map <F5> :so %
 
+" PLUGINS configs
 
-
-
-" PLUGINS
-
+" neard tree 
+"call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+"call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"call NERDTreeHighlightFile('jsx', 'Red', 'none', '#ffa500', '#151515')
+"call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+"call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+"call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+"call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+"call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+"call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
 
 " webicons config
 let g:webdevicons_enable = 1
@@ -201,15 +214,6 @@ let g:webdevicons_enable_nerdtree =1
 let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_ctrlp = 1
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" enable open and close folder/directory glyph flags (disabled by default with 0)
-let g:DevIconsEnableFoldersOpenClose = 1
-" enable pattern matching glyphs on folder/directory (enabled by default with 1)
-let g:DevIconsEnableFolderPatternMatching = 1
-" change the default folder/directory glyph/icon
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = 'ƛ'
-" change the default open folder/directory glyph/icon (default is '')
-let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " powerline
@@ -221,19 +225,16 @@ set laststatus=2
 " testing rounded separators (extra-powerline-symbols):
 let g:airline_left_sep = "\uE0CE"
 let g:airline_right_sep = "\uE0CF"
-
 " set the CN (column number) symbol:
-let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+"let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 "let g:airline_theme='base16_apathy'
 "let g:airline_theme='silver'
-set termguicolors
 
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-" =================
 " syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -243,16 +244,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 " deoplete config
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
 let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 
 " tern config
 let g:tern_request_timeout = 1
@@ -265,9 +259,3 @@ let g:tsuquyomi_auto_open = 1
 let g:tsuquyomi_disable_quickfix = 1
 
 set completeopt+=noinsert
-
-if has("gui_running")
-    inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
-else
-    inoremap <silent><expr><C-@> deoplete#mappings#manual_complete()
-endif
