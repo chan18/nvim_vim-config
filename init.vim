@@ -30,8 +30,11 @@ Plug 'tacahiroy/ctrlp-funky'
 
 " syntastic
 Plug 'scrooloose/syntastic'
+
 " git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " comment
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
@@ -57,7 +60,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'StanAngeloff/php.vim'
 
 
-" laravel 
+" laravel
 Plug 'rafaelndev/deoplete-laravel-plugin', {'for': ['php'], 'do': 'composer install'}
 
 " css
@@ -80,12 +83,13 @@ Plug 'SirVer/ultisnips'
 
 call plug#end()
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 syntax on
 set ruler		" shows line number at bottom 
 "set spell
 set number
-"colorscheme fairyfloss
-colorscheme nova
+colorscheme fairyfloss
+"colorscheme nova
 set bg=dark
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "set cursorline		" horizontal highlight
@@ -185,12 +189,33 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 map <F5> :so %
 
+
+
+
 " PLUGINS
+
+
 " webicons config
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree =1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" enable open and close folder/directory glyph flags (disabled by default with 0)
+let g:DevIconsEnableFoldersOpenClose = 1
+" enable pattern matching glyphs on folder/directory (enabled by default with 1)
+let g:DevIconsEnableFolderPatternMatching = 1
+" change the default folder/directory glyph/icon
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = 'ƛ'
+" change the default open folder/directory glyph/icon (default is '')
+let g:DevIconsDefaultFolderOpenSymbol = ''
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " powerline
 "let g:airline_theme = 'solarized'
-set t_Co=256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
 set laststatus=2
 " testing rounded separators (extra-powerline-symbols):
@@ -198,7 +223,7 @@ let g:airline_left_sep = "\uE0CE"
 let g:airline_right_sep = "\uE0CF"
 
 " set the CN (column number) symbol:
-"let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 "let g:airline_theme='base16_apathy'
 "let g:airline_theme='silver'
 set termguicolors
